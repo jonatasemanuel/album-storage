@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="mt-5">Artists</h3>
+    <a href="#">+ new artist</a>
+    <a href="#">- remove artist</a>
+    {% for artist in artists %}
+        <p>
+            <img src="{{ artist.picture.url }}" alt="{{ artist.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
+        </p>
+        <span><a href="{% url 'discs' artist.pk %}">{{ artist.name }}</a></span>
+    {% endfor %}
+
+{% endblock content %}
