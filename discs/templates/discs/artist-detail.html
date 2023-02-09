@@ -1,0 +1,17 @@
+{% extends 'discs/base.html' %}
+
+{% block content %}
+
+      <h3 class="mt-5">Artists</h3>
+      <a href="#">+ new artist</a>
+      <a href="#">- remove artist</a>
+
+  
+         <p>
+            <img src="{{ object.picture.url }}" alt="{{ object.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
+         </p>
+         <span><a href="#">{{ object.name }}</a></span>
+
+
+
+{% endblock content %}

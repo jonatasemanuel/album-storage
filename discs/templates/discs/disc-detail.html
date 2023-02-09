@@ -1,0 +1,19 @@
+{% extends 'discs/base.html' %}
+
+{% block content %}
+
+    <h3 class="mt-5">Discs</h3>
+    <h3 class="mt-1"><a href="{% url 'artists' %}">Artists</a></h3>
+        <a href="#">+ new album</a>
+        <a href="#">- remove album</a>
+
+            <p>
+                <img src="{{ object.artwork.url }}" alt="{{ object.title }}" style="max-width: 175px; height: auto;">
+            </p>
+            <p><a href="{% url 'disc-detail' slug=disc.slug %}">{{ object.title|title }}</a></p>
+            <p><a href="#">{{ object.artist|title }}</a></p>
+            <p>{{ object.release }}</p>
+ 
+  
+
+{% endblock content %}
