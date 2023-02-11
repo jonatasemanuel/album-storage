@@ -5,6 +5,7 @@ from django.db import models
 
 class Artist(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(null=True)
     picture = models.ImageField(upload_to='pictures/%Y/%m/')
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

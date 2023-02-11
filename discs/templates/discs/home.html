@@ -1,0 +1,32 @@
+{% extends 'discs/base.html'  %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <main class="main-content">
+        
+        <div class="home-head">
+            <h2 class="">Wecome to your,<br>digital Rack</h2>
+            <img src="{% static 'discs/img/vinyl-icon.png' %}" alt="">
+            <div class="category-link">
+                <a href="#"> Discs</a>
+                <a href="#"> Artists</a>
+            </div>
+
+        </div>
+        
+        
+        <div class="search-container">
+            
+            <div class="container">
+                <form action="#" class="search-form">
+                    <input type="search" class="search-input" name="search">
+                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            
+        </div>
+    
+    </main>
+    
+    {% endblock content %}

@@ -10,7 +10,7 @@
          <p>
             <img src="{{ artist.picture.url }}" alt="{{ artist.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
          </p>
-         <span><a href="{% url 'artist-detail' pk=artist.id %}">{{ artist.name }}</a></span>
+         <span><a href="{% url 'artist-detail' slug=artist.slug %}">{{ artist.name }}</a></span>
       {% endfor %}
 
 

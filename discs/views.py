@@ -2,9 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 from .models import Disc, Artist
+
+
+class HomeView(TemplateView):
+    template_name = 'discs/home.html'
 
 
 class DiscView(LoginRequiredMixin, ListView):
