@@ -47,6 +47,7 @@ class DiscDetail(LoginRequiredMixin, DetailView):
         ).order_by('id')
         return context"""
 
+
 def artist(request, artist_slug):
     discs = Disc.objects.filter(
             owner=request.user,
