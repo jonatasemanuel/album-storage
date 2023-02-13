@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h3 class="mt-5">Discs</h3>
+    <h3 class="mt-5"><a href="{% url 'discs' %}">Discs</a></h3>
     <h3 class="mt-1"><a href="{% url 'artists' %}">Artists</a></h3>
         <a href="#">+ new album</a>
         <a href="#">- remove album</a>
@@ -12,7 +12,7 @@
                 <img src="{{ disc.artwork.url }}" alt="{{ disc.title }}" style="max-width: 175px; height: auto;">
             </p>
             <p><a href="{% url 'disc-detail' slug=disc.slug %}">{{ disc.title|title }}</a></p>
-            <p><a href="#">{{ disc.artist|title }}</a></p>
+            <p><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></p>
             <p>{{ disc.release }}</p>
         {% empty %}
             <p>nothing yet</p>
