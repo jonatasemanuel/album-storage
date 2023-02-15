@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Disc, Artist
 
@@ -12,6 +14,7 @@ class HomeView(TemplateView):
 
 
 class DiscView(LoginRequiredMixin, ListView):
+
     model = Disc
     template_name = 'discs/discs.html'
     queryset = Disc.objects.all()
@@ -25,7 +28,7 @@ class DiscView(LoginRequiredMixin, ListView):
 
 
 class DiscDetail(LoginRequiredMixin, DetailView):
-    
+
     model = Disc
     template_name = 'discs/disc-detail.html'
     
@@ -33,21 +36,20 @@ class DiscDetail(LoginRequiredMixin, DetailView):
         qs = super().get_queryset(**kwargs)
         return qs.filter(owner=self.request.user)
 
+# class DiscArtistCategory(ListView):
+#     template_name = 'discs/discs.html'
+#     model = Disc
+#     context_object_name = 'albums'
 
-"""class DiscArtistCategory(ListView):
-    template_name = 'discs/discs.html'
-    model = Disc
-    context_object_name = 'albums'
-    
-    def get_context_data(self, artist_slug, **kwargs):
-        context=  super().get_context_data(**kwargs)
-        context['albums'] = context['albums'].filter(
-            owner=self.request.user,
-            artist__slug=artist_slug
-        ).order_by('id')
-        return context"""
+#     def get_context_data(self, artist_slug, **kwargs):
+#         context=  super().get_context_data(**kwargs)
+#         context['albums'] = context['albums'].filter(
+#             owner=self.request.user,
+#             artist__slug=artist_slug
+#         ).order_by('id')
+#         return context
 
-
+# Turn into class based view and add loginrequiredmixin
 def artist(request, artist_slug):
     discs = Disc.objects.filter(
             owner=request.user,
@@ -76,3 +78,11 @@ class ArtistDetail(LoginRequiredMixin, DetailView):
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
         return qs.filter(owner=self.request.user)
+
+
+class UpdateArtistView(LoginRequiredMixin, UpdateView):
+
+    model = Artist
+    template_name = 'discs/artist-form.html'
+    fields = '__all__'
+    success_url = reverse_lazy('artists')

@@ -11,7 +11,7 @@
       {% for artist in artists %}
          <p>
             <a href="{% url 'artist-detail' slug=artist.slug %}">
-            <img src="{{ artist.picture.url }}" alt="{{ artist.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
+            <img src="{{ artist.picture.url }}" alt="{{ artist.name }}" style="max-width: 175px; height: 175px;  border-radius: 50%;">
             </a>
          </p>
          <span>{{ artist.name }}</span>

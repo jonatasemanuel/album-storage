@@ -3,6 +3,7 @@
 {% block content %}
 
       {% include 'discs/partials/_nav.html' %}
+      <a href="{% url 'edit-artist' object.pk %}">+ edit artist</a>
       <a href="#">+ new artist</a>
       <a href="#">- remove artist</a>
 

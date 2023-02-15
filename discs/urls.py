@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DiscView, ArtistsView, DiscDetail, ArtistDetail, HomeView, artist
+from .views import DiscView, ArtistsView, DiscDetail, ArtistDetail, HomeView, artist, UpdateArtistView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('artists', ArtistsView.as_view(), name='artists'),
     path('<slug:slug>', DiscDetail.as_view(), name='disc-detail'),
     path('artist/<slug:slug>', ArtistDetail.as_view(), name='artist-detail'),
+    path('edit-artist/<int:pk>', UpdateArtistView.as_view(), name='edit-artist'),
 ]

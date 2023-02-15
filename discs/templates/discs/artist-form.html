@@ -1,0 +1,29 @@
+{% extends 'discs/base.html' %}
+{% load static %}
+
+
+{% block title %}New artist{% endblock title %}
+
+{% block content %}
+
+    <h2>Adding new artist...</h2>
+
+        <div class="search-container">
+
+            <form action="" method="post" class="container">
+                {% csrf_token %}
+                <ul>
+                    <li class="search-form">Name{{ form.name }}</li>
+                    <li class="search-form">Slug{{ form.slug }}</li>
+                    <li class="search-form">Img{{ form.picture }}</li>
+                    <li class="search-form">owner{{ form.owner }}</li>
+                </ul>
+                <button type="submit" class="btn btn-save">Save</button>
+                <button type="submit" class="btn btn-back">
+                    <a href="{% url 'artists' %}">Back</a>
+                </button>
+            </form>
+        </div>
+
+
+{% endblock content %}

@@ -167,8 +167,8 @@ h6 {
 
 .disc-list {
   display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
 }
 
 .disc-list a {
@@ -205,4 +205,14 @@ h6 {
   flex-flow: wrap;
   width: fit-content;
   height: fit-content;
+}
+
+.btn {
+  margin: 10px;
+  padding: 5px;
+  border: none;
+}
+
+li {
+  list-style: none;
 }
