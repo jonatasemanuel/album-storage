@@ -61,10 +61,10 @@ def artist(request, artist_slug):
 
 def category(request, category_slug):
 
-    discs = Disc.objects.filter(
+    discs = get_list_or_404(Disc.objects.filter(
         category__slug=category_slug
     ).order_by('-id')
-
+    )
     context = {'discs': discs,
                'title': f'{discs[0].category.name}'
                }

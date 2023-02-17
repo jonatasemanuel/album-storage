@@ -24,8 +24,12 @@
                     </p>
                     <p>{{ disc.title|title }}</p>
                     <span><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></span>
-                    <small><a href="#">{{ disc.category.name  }}</a></small>
-                    </div>
+
+                    {% if disc.category.slug %}
+                        <small><a href="{% url 'category' disc.category.slug %}">{{ disc.category.name  }}</a></small>
+                    {% endif %}
+                    
+                </div>
                     {% empty %}
                     <p>nothing yet</p>
             {% endfor %}

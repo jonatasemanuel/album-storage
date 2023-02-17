@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from .views import (ArtistDetail, ArtistsView, DiscDetail, DiscView, HomeView,
                     UpdateArtistView, artist, category)
@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('artist/albums/<slug:artist_slug>/', artist, name='albums'),
 
-    path('albums/category/<slug:category_slug>/', category, name='category'),
+    path('albums/category/<slug:category_slug>/',
+         category, name='category'),
 
 ]
