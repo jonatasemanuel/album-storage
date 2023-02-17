@@ -15,18 +15,19 @@
             <div class="disc-card">
 
             {% for disc in discs %}
+
                 <div class="disc-text">
-                <p>
-                    <a href="{% url 'disc-detail' slug=disc.slug %}">
-                    <img src="{{ disc.artwork.url }}" alt="{{ disc.title }}">
-                    </a>
-                </p>
-                <p>{{ disc.title|title }}</p>
-                <small><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></small>
-                {% comment %} <small>{{ disc.release }}</small> {% endcomment %}
-                </div>
-                {% empty %}
-                <p>nothing yet</p>
+                    <p>
+                        <a href="{% url 'disc-detail' slug=disc.slug %}">
+                            <img src="{{ disc.artwork.url }}" alt="{{ disc.title }}">
+                        </a>
+                    </p>
+                    <p>{{ disc.title|title }}</p>
+                    <span><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></span>
+                    <small><a href="#">{{ disc.category.name  }}</a></small>
+                    </div>
+                    {% empty %}
+                    <p>nothing yet</p>
             {% endfor %}
 
             </div>

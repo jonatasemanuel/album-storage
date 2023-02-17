@@ -1,0 +1,38 @@
+{% extends 'discs/base.html' %}
+
+{% block title %}Discs{% endblock title %}
+
+{% block content %}
+    <!-- nav -->
+    {% include 'discs/partials/_nav.html' %}
+    <div class="edit-album">
+        <a href="#">+ new album</a>
+        <a href="#">- remove album</a>
+    </div>
+
+        <div class="disc-list">
+
+            <div class="disc-card">
+
+            {% for disc in discs %}
+                <div class="disc-text">
+                <p>
+                    <a href="{% url 'disc-detail' slug=disc.slug %}">
+                    <img src="{{ disc.artwork.url }}" alt="{{ disc.title }}">
+                    </a>
+                </p>
+                <p>{{ disc.title|title }}</p>
+                <span><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></span>
+
+                <small class="category-title"><a href="{% url 'category' disc.category.slug %}">{{ disc.category.name }}</a></small>
+
+                </div>
+                {% empty %}
+                <p>nothing yet</p>
+            {% endfor %}
+
+            </div>
+
+        </div>
+
+{% endblock content %}

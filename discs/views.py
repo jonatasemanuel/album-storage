@@ -1,37 +1,35 @@
-from django.shortcuts import render, get_object_or_404
+# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.urls import reverse_lazy
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import Disc, Artist
+from .models import Artist, Disc
 
 
 class HomeView(TemplateView):
     template_name = 'discs/home.html'
 
 
-class DiscView(LoginRequiredMixin, ListView):
+class DiscView(ListView):
 
     model = Disc
     template_name = 'discs/discs.html'
     queryset = Disc.objects.all()
     context_object_name = 'discs'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['discs'] = context['discs'].filter(owner=self.request.user).order_by('artist')
+        context['discs'] = context['discs'].filter(
+            owner=self.request.user).order_by('-id')
         return context
 
 
-class DiscDetail(LoginRequiredMixin, DetailView):
+class DiscDetail(DetailView):
 
     model = Disc
     template_name = 'discs/disc-detail.html'
-    
+
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
         return qs.filter(owner=self.request.user)
@@ -50,16 +48,30 @@ class DiscDetail(LoginRequiredMixin, DetailView):
 #         return context
 
 # Turn into class based view and add loginrequiredmixin
+
+
 def artist(request, artist_slug):
     discs = Disc.objects.filter(
-            owner=request.user,
-            artist__slug=artist_slug
-        ).order_by('title')
+        owner=request.user,
+        artist__slug=artist_slug
+    ).order_by('title')
     context = {'discs': discs}
     return render(request, 'discs/discs.html', context)
 
 
-class ArtistsView(LoginRequiredMixin, ListView):
+def category(request, category_slug):
+
+    discs = Disc.objects.filter(
+        category__slug=category_slug
+    ).order_by('-id')
+
+    context = {'discs': discs,
+               'title': f'{discs[0].category.name}'
+               }
+    return render(request, 'discs/category.html', context)
+
+
+class ArtistsView(ListView):
     models = Artist
     template_name = 'discs/artists.html'
     queryset = Artist.objects.all()
@@ -71,7 +83,7 @@ class ArtistsView(LoginRequiredMixin, ListView):
         return context
 
 
-class ArtistDetail(LoginRequiredMixin, DetailView):
+class ArtistDetail(DetailView):
     model = Artist
     template_name = 'discs/artist-detail.html'
 
@@ -80,7 +92,7 @@ class ArtistDetail(LoginRequiredMixin, DetailView):
         return qs.filter(owner=self.request.user)
 
 
-class UpdateArtistView(LoginRequiredMixin, UpdateView):
+class UpdateArtistView(UpdateView):
 
     model = Artist
     template_name = 'discs/artist-form.html'

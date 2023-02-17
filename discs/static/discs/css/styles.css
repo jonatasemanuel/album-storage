@@ -10,7 +10,7 @@ a {
 }
 
 body {
-  width: 850px;
+  width: 1000px;
   height: auto;
   margin: 0 auto;
   font-family: sans-serif;
@@ -138,19 +138,19 @@ h6 {
     text-align: left;
   }
 
-  .disc-card {
+  /* .disc-card {
     display: grid;
     font-size: 1rem;
     flex-wrap: wrap;
     justify-items: center;
     row-gap: 1rem;
-  }
+  } */
 
 }
 
 .disc-card p{
   font-weight: bolder;
-  color: rgb(253, 199, 129);
+  color: rgb(255, 208, 146);
 }
 
 .disc-card img {
