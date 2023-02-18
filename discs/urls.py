@@ -8,18 +8,17 @@ urlpatterns = [
 
     path('discs/', DiscView.as_view(), name='discs'),
 
-    path('artists/', ArtistsView.as_view(), name='artists'),
-
     path('<slug:slug>/', DiscDetail.as_view(), name='disc-detail'),
 
-    path('artist/<slug:slug>/', ArtistDetail.as_view(), name='artist-detail'),
+    path('artists/', ArtistsView.as_view(), name='artists'),
 
-    path('edit-artist/<int:pk>/', UpdateArtistView.as_view(),
-         name='edit-artist'),
+    path('artist/<slug:slug>/', ArtistDetail.as_view(), name='artist-detail'),
 
     path('artist/albums/<slug:artist_slug>/', artist, name='albums'),
 
     path('albums/category/<slug:category_slug>/',
          category, name='category'),
 
+    path('edit-artist/<int:pk>/', UpdateArtistView.as_view(),
+         name='edit-artist'),
 ]
