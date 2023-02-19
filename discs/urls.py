@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('<slug:slug>/', DiscDetail.as_view(), name='disc-detail'),
 
-    path('artists/', ArtistsView.as_view(), name='artists'),
+    path('artists/albums/', ArtistsView.as_view(), name='artists'),
 
     path('artist/<slug:slug>/', ArtistDetail.as_view(), name='artist-detail'),
 
