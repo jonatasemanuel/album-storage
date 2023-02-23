@@ -2,17 +2,16 @@
 
 {% block content %}
 
-      {% include 'discs/partials/_nav.html' %}
-      <a href="{% url 'edit-artist' object.pk %}">+ edit artist</a>
+      {% comment %} <a href="{% url 'edit-artist' artist.slug %}">+ edit artist</a>  {% endcomment %}
       <a href="#">+ new artist</a>
       <a href="#">- remove artist</a>
 
          <p>
-            <a href="{% url 'albums' object.slug %}">
-            <img src="{{ object.picture.url }}" alt="{{ object.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
+            <a href="{% url 'albums' artist.slug %}">
+            <img src="{{ artist.picture.url }}" alt="{{ artist.name }}" style="max-width: 175px; height: auto;  border-radius: 50%;">
             </a>
          </p>
-         <span>{{ object.name }}</span>
+         <span>{{ artist.name }}</span>
 
 
 
