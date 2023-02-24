@@ -30,7 +30,8 @@ def discs_detail_disc(request, slug):
 def artist_list(request):
 
     artists = get_list_or_404(
-        Artist.objects.order_by('-id'))
+        Artist.objects.order_by('-id')
+    )
     context = {'artists': artists}
     return render(request, 'discs/artists.html', context)
 
@@ -44,9 +45,9 @@ def artist_detail(request, slug):
 
 
 def artist_albums(request, artist_slug):
-    discs = Disc.objects.filter(
+    discs = get_list_or_404(Disc.objects.filter(
         artist__slug=artist_slug
-    ).order_by('title')
+    ).order_by('title'))
     context = {'discs': discs,
                'name': f'{discs[0].artist.name}'}
     return render(request, 'discs/discs.html', context)
