@@ -4,10 +4,9 @@
 
 {% block content %}
 
-      {% include 'discs/partials/_nav.html' %}
       <a href="#">+ new artist</a>
       <a href="#">- remove artist</a>
-
+   {% if artists %}
       {% for artist in artists %}
          <p>
             <a href="{% url 'artist-detail' slug=artist.slug %}">
@@ -16,6 +15,9 @@
          </p>
          <span>{{ artist.name }}</span>
       {% endfor %}
+   {% else %}
+         <p>Not artist yet.</p>
+   {% endif %}
 
 
 {% endblock content %}

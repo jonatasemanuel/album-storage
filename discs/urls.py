@@ -1,24 +1,21 @@
-from django.urls import path, re_path
+from django.urls import path
 
-from .views import (ArtistDetail, ArtistsView, DiscDetail, DiscView, HomeView,
-                    UpdateArtistView, artist, category)
+from . import views
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', views.home_view, name='home'),
 
-    path('discs/', DiscView.as_view(), name='discs'),
+    path('discs/', views.discs_all_discs,  name='discs'),
 
-    path('<slug:slug>/', DiscDetail.as_view(), name='disc-detail'),
+    path('<slug:slug>/', views.discs_detail_disc, name='disc-detail'),
 
-    path('artists/albums/', ArtistsView.as_view(), name='artists'),
+    path('artists/albums/', views.artist_list, name='artists'),
 
-    path('artist/<slug:slug>/', ArtistDetail.as_view(), name='artist-detail'),
+    path('artist/<slug:slug>/', views.artist_detail, name='artist-detail'),
 
-    path('artist/albums/<slug:artist_slug>/', artist, name='albums'),
+    path('artist/albums/<slug:artist_slug>/',
+         views.artist_albums, name='albums'),
 
     path('albums/category/<slug:category_slug>/',
-         category, name='category'),
-
-    path('edit-artist/<int:pk>/', UpdateArtistView.as_view(),
-         name='edit-artist'),
+         views.category_albums, name='category'),
 ]

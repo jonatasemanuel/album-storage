@@ -1,21 +1,20 @@
 {% extends 'discs/base.html' %}
 
-{% block title %} {{object.title}} {% endblock title %} 
+{% block title %} {{disc.title}} {% endblock title %} 
 
 {% block content %}
 
-    {% include 'discs/partials/_nav.html' %}
         <a href="#">+ new album</a>
         <a href="#">- remove album</a>
         <div class="disc-list container">
             <div class="disc-card">
                 <div class="disc-text">
                 <p>
-                    <img src="{{ object.artwork.url }}" alt="{{ object.title }}" style="max-width: 250px; height: auto;">
+                    <img src="{{ disc.artwork.url }}" alt="{{ disc.title }}" style="max-width: 250px; height: auto;">
                 </p>
-                <h1>{{ object.title|title }}</h1>
-                <p><a href="{% url 'albums' disc.artist.slug %}">{{ object.artist|title }}</a></p>
-                <small>{{ object.release }}</small>
+                <h1>{{ disc.title|title }}</h1>
+                <p><a href="{% url 'albums' disc.artist.slug %}">{{ disc.artist|title }}</a></p>
+                <small>{{ disc.release }}</small>
                 </div>
             </div>
         </div>
