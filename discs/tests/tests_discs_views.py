@@ -20,6 +20,10 @@ class DiscViewsTest(TestCase):
         view = resolve(reverse('home'))
         self.assertIs(view.func, views.home_view)
 
+    def test_discs_all_discs_function_is_correct(self):
+        view = resolve(reverse('discs'))
+        self.assertIs(view.func, views.discs_all_discs)
+
     @skip('wip')
     def test_discs_all_discs_status_code_200_ok(self):
         response = self.client.get(reverse('discs'))
@@ -29,10 +33,6 @@ class DiscViewsTest(TestCase):
     def test_discs_all_discs_loads_correct_template(self):
         response = self.client.get(reverse('discs'))
         self.assertTemplateUsed(response, 'discs/discs.html')
-
-    def test_discs_all_discs_function_is_correct(self):
-        view = resolve(reverse('discs'))
-        self.assertIs(view.func, views.discs_all_discs)
 
     def test_discs_all_template_shows_no_artists_found_if_no_artists(self):
         response = self.client.get(reverse('discs'))

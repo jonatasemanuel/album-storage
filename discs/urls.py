@@ -7,6 +7,8 @@ urlpatterns = [
 
     path('discs/', views.discs_all_discs,  name='discs'),
 
+    path('albums/search/', views.search, name='search'),
+
     path('<slug:slug>/', views.discs_detail_disc, name='disc-detail'),
 
     path('artists/albums/', views.artist_list, name='artists'),

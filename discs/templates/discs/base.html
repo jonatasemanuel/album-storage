@@ -7,6 +7,8 @@
     <title>{% block title %}{% endblock title %} | Rack</title>
 </head>
 <body>
+    {% comment %} Head {% endcomment %}
+    {% include 'discs/partials/_search.html'  %}
         {% include 'discs/partials/_nav.html' %}
         {% block content %}{% endblock %}
 

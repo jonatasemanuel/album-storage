@@ -1,5 +1,6 @@
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 
 from .models import Artist, Disc
@@ -63,3 +64,10 @@ def category_albums(request, category_slug):
                'title': f'{discs[0].category.name}'
                }
     return render(request, 'discs/category.html', context)
+
+
+def search(request):
+    search_term = request.GET.get('q')
+    if not search_term:
+        raise Http404()
+    return render(request, 'discs/search.html')

@@ -1,7 +1,7 @@
+from unittest import skip
+
 from django.test import TestCase
 from django.urls import resolve, reverse
-
-from unittest import skip
 
 from discs import views
 
@@ -31,4 +31,17 @@ class CategoryViewsTest(TestCase):
         response = self.client.get(
             reverse('category', kwargs={'category_slug': 'batata'})
         )
+        self.assertEqual(response.status_code, 404)
+
+    def test_search_uses_correct_view_function(self):
+        resolved = resolve(reverse('search'))
+        self.assertIs(resolved.func, views.search)
+
+    def test_search_loads_correct_template(self):
+        response = self.client.get(reverse('search') + '?q=test')
+        self.assertTemplateUsed(response, 'discs/search.html')
+
+    def test_search_raises_404_if_no_search_term(self):
+        url = reverse('search')
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 404)

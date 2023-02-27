@@ -31,3 +31,7 @@ class DiscURLsTest(TestCase):
     def test_category_albums_url_is_correct(self):
         url = reverse('category', kwargs={'category_slug': 'rap'})
         self.assertEqual(url, '/albums/category/rap/')
+
+    def test_search_album_url_is_correct(self):
+        url = reverse('search')
+        self.assertEqual(url, '/albums/search/')
