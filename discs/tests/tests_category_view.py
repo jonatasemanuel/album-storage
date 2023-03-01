@@ -45,3 +45,11 @@ class CategoryViewsTest(TestCase):
         url = reverse('search')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+    def test_recipe_search_term_is_on_page_title_and_escaped(self):
+        url = reverse('search') + '?q=<Test>'
+        response = self.client.get(url)
+        self.assertIn(
+            'Search for &quot;&lt;Test&gt;&quot;',
+            response.content.decode('utf-8')
+        )
